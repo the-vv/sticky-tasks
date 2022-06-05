@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { GoogleAuthProvider } from 'firebase/auth';
-import { take, tap } from 'rxjs';
-import { ECollectionNames, EStorageKeys, IUser } from '../models/common';
+import { ECollectionNames, IUser } from '../models/common';
 import { CommonService } from './common.service';
 import { ConfigService } from './config.service';
 
@@ -27,12 +26,11 @@ export class AuthService {
         .then((userData: any) => {
           resolve(userData);
           const user: IUser = {
-            id: userData.user.uid,
             email: userData.user.email,
             name: userData.user.displayName,
             image: userData.user.photoURL
           }
-          this.saveUser(user)
+          this.saveUser(user, userData.user.uid)
             .then(() => undefined)
             .catch(err => {
               this.common.showSnackBar(err.message);
@@ -41,18 +39,18 @@ export class AuthService {
     });
   }
 
-  saveUser(user: IUser) {
+  saveUser(user: IUser, id: string) {
     return this.afStore.collection<IUser>(ECollectionNames.users).doc(user.id).set(user);
   }
 
   getuserById(id: string) {
-    return this.afStore.collection<IUser>(ECollectionNames.users).doc(id).valueChanges();
+    return this.afStore.collection<IUser>(ECollectionNames.users).doc(id).valueChanges({ idField: 'id' });
   }
 
   checkLoggedIn() {
     return this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.getuserById(user.uid).pipe(take(1)).subscribe({
+        this.getuserById(user.uid).subscribe({
           next: (user) => {
             this.config.currentUser = user;
           },
