@@ -12,3 +12,9 @@ export enum EStorageKeys {
 export enum ECollectionNames {
     users = 'users'
 }
+
+export enum ETaskStatus {
+    todo = 'todo',
+    inProgress = 'in-progress',
+    completed = 'completed'
+}

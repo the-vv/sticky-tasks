@@ -1,0 +1,49 @@
+<div class="container-fluid py-3">
+    <mat-accordion>
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    In Progress Tasks
+                </mat-panel-title>
+                <mat-panel-description>
+                    Tasks which are marked as in progress
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+                <div class="col-md-4 col-xl-3 g-3" *ngFor="let task of todoTasks">
+                    <app-task-item [task]="task"></app-task-item>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    TODO Tasks
+                </mat-panel-title>
+                <mat-panel-description>
+                    Tasks which are marked as TODO
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+                <div class="col-md-4 col-xl-3 g-3" *ngFor="let task of inProgressTasks">
+                    <app-task-item [task]="task"></app-task-item>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Completed Tasks
+                </mat-panel-title>
+                <mat-panel-description>
+                    Tasks which are marked as Completed
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+                <div class="col-md-4 col-xl-3 g-3" *ngFor="let task of completedTasks">
+                    <app-task-item [task]="task"></app-task-item>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

@@ -1,0 +1,7 @@
+<p-card [header]="task.title" [subheader]="task.date | date: 'hh : mm aa, dd/MM/yyyy'" styleClass="p-card-shadow">
+    <p>{{ task.description }}</p>
+    <ng-template pTemplate="footer">
+        <button mat-button class="align-baseline"><mat-icon>visibility</mat-icon> Updates</button>
+        <button mat-button><mat-icon>add</mat-icon> Update</button>
+    </ng-template>
+</p-card>
