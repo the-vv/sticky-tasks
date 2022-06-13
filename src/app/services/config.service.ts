@@ -8,9 +8,9 @@ export class ConfigService {
 
   constructor() { }
 
-  private currentUserCopy: IUser | undefined = undefined;
+  private currentUserValue: IUser | undefined = undefined;
   public set currentUser(user: IUser | undefined) {
-    this.currentUserCopy = user;
+    this.currentUserValue = user;
     if (user) {
       this.isLoggedIn = true;
     } else {
@@ -18,7 +18,7 @@ export class ConfigService {
     }
   }
   public get currentUser(): IUser | undefined {
-    return this.currentUserCopy;
+    return this.currentUserValue;
   }
 
   public isLoggedIn: boolean = false;

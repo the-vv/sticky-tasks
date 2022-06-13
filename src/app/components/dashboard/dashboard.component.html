@@ -1,0 +1,7 @@
+<app-navbar></app-navbar>
+<mat-drawer-container autosize>
+  <mat-drawer mode="side" [opened]="commonService.isSideMenuOpen">
+    <app-sidemenu></app-sidemenu>
+  </mat-drawer>
+  <router-outlet></router-outlet>
+</mat-drawer-container>

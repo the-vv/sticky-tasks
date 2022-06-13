@@ -6,13 +6,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CommonService {
 
+  public isSideMenuOpen = true;
+
   constructor(
     private snackBar: MatSnackBar
   ) { }
 
-  showSnackBar(message: string, action: string = 'Dismiss', duration: number = 3000) {
-    this.snackBar.open(message, action, {
-      duration: duration
+  showError(message: string, action: string = 'Dismiss', duration: number = 3000) {
+    this.snackBar.open(`Error: ${message}`, action, {
+      duration: duration,
+      panelClass: ['bg-danger']
     });
   }
 

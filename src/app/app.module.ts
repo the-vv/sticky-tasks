@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,7 +9,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MainAuthService } from './services/resolvers/main-auth.service';
 
+const mainResolverFactory = (provider: MainAuthService) => () => provider.init();
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AngularFirestoreModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [    
+    { provide: APP_INITIALIZER, useFactory: mainResolverFactory, deps: [MainAuthService], multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

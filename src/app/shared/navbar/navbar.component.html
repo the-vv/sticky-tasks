@@ -1,0 +1,12 @@
+<mat-toolbar class="d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+        <button mat-icon-button (click)="commonService.isSideMenuOpen = !commonService.isSideMenuOpen">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Sticky Tasker</span>
+    </div>
+    <div>
+        <span class="small fw-light me-3">{{config.currentUser?.name}}</span>
+        <p-avatar [label]="config.currentUser?.name?.[0] || 'U'" shape="circle"></p-avatar>
+    </div>
+</mat-toolbar>
